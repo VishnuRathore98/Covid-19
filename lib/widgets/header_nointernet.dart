@@ -46,12 +46,12 @@ class MyHeaderno extends StatelessWidget {
             Expanded(
               child: Stack(
                 children: <Widget>[
-                  SvgPicture.asset(
-                    image,
-                    width:300,
-                    fit: BoxFit.fitWidth,
-                    alignment: Alignment.topCenter,
-                  ),
+//                  SvgPicture.asset(
+//                    image,
+//                    width:300,
+//                    fit: BoxFit.fitWidth,
+//                    alignment: Alignment.topCenter,
+//                  ),
                   Positioned(
                     top: 20,
                     left: 200,

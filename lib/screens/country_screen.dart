@@ -52,6 +52,7 @@ class _CountryScreenState extends State<CountryScreen> {
   _CountryScreenState(this.covidData);
   @override
   Widget build(BuildContext context) {
+
     var countryName = covidData['country'],
         totalCases = covidData['cases'],
         todayCases = covidData['todayCases'],
@@ -82,21 +83,22 @@ class _CountryScreenState extends State<CountryScreen> {
               padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
               children: <Widget>[
                 tile("Total Cases", totalCases, Colors.pink),
-                tile("Today Cases", todayCases, Colors.deepPurple),
-                tile("Today Deaths", todayDeaths, Colors.red),
+                tile("Recovered", recovered, Color(0xFF00C853)),
                 tile("Total Deaths", totalDeaths, Colors.redAccent),
-                tile("Recovered", recovered, Colors.green),
+                tile("Today Cases", todayCases, Color(0xFFe57373)),
+                tile("Today Deaths", todayDeaths, Color(0xFFb71c1c)),
+
                 tile("Active Cases", active, Colors.blueGrey),
-                tile("Critical", critical, Colors.yellow),
+                tile("Critical", critical, Color(0xFFFFEA00)),
               ],
               staggeredTiles: [
                 StaggeredTile.extent(2, 100),
                 StaggeredTile.count(1, 1),
-                StaggeredTile.extent(1, 150),
-                StaggeredTile.extent(1, 150),
-                StaggeredTile.extent(1, 150),
+                StaggeredTile.extent(1, 155),
+                StaggeredTile.extent(1, 155),
+                StaggeredTile.extent(1, 155),
                 StaggeredTile.count(1, 1),
-                StaggeredTile.extent(1, 150),
+                StaggeredTile.extent(1, 155),
               ],
             ),
           ),
@@ -134,8 +136,8 @@ class _CountryScreenState extends State<CountryScreen> {
 Widget tile(String name, var variableName, var textColor) {
   return Material(
     color: Colors.white,
-    elevation: 20.0,
-    shadowColor: Color(0xFF4B4B4B),
+    elevation: 8.0,
+//    shadowColor: Color(0xFF4B4B4B),
     borderRadius: BorderRadius.circular(40),
     child: Center(
       child: Padding(
@@ -152,23 +154,24 @@ Widget tile(String name, var variableName, var textColor) {
                   children: <Widget>[
                     Center(
                         child: Padding(
-                      padding: const EdgeInsets.fromLTRB(1, 0, 20, 5),
+                      padding: const EdgeInsets.all(2),
                       child: Text('+' + '$variableName',
                           style: TextStyle(
                               color: textColor,
-                              fontSize: 35.0,
-                              fontFamily: 'Digital-7')),
+                              fontSize: 33.0,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Iceland')),
                     )),
                     Center(
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(5, 10, 3, 5),
+                        padding: const EdgeInsets.all(2),
                         child: Text(
                           '$name',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black45,
-                              fontSize: 18.0,
-                              fontFamily: 'Digital-7'),
+                              fontSize: 20.0,
+                              fontFamily: 'Iceland'),
                         ),
                       ),
                     ),

@@ -6,15 +6,20 @@ import 'package:corona_app/screens/location_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'dart:io';
 import 'dart:async';
+import '../flutter_app_icons.dart';
 import 'noInternet.dart';
 import 'about_app.dart';
+import 'youtube.dart';
 
+// ignore: camel_case_types
 class news extends StatefulWidget {
   @override
   _newsState createState() => _newsState();
 }
 
+// ignore: camel_case_types
 class _newsState extends State<news> {
+
   Future WorldScreen1(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => WorldScreen()));
@@ -33,6 +38,11 @@ class _newsState extends State<news> {
   Future Nonet(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => noInternet()));
+  }
+
+  Future youtube(context) async {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => PlaylistShow()));
   }
 
   StreamSubscription connectivitySubscription;
@@ -67,26 +77,27 @@ class _newsState extends State<news> {
   @override
   Widget build(BuildContext context) {
     int _currentindex = 2;
+    GlobalKey _bottomNavigationKey = GlobalKey();
     return SafeArea(
           child: MaterialApp(
           title: 'App Name',
           home: Scaffold(
             bottomNavigationBar: CurvedNavigationBar(
               index: _currentindex,
+              key: _bottomNavigationKey,
               height: 70.0,
               items: <Widget>[
                 Icon(Icons.public, size: 30),
                 Icon(Icons.search, size: 30),
-                Icon(Icons.library_books, size: 30, color: Color(0xFF11249F)),
+                Icon(Icons.library_books, size: 30),
                 Icon(Icons.ondemand_video, size: 30),
                 Icon(
-                  Icons.bug_report,
-                  size: 30,
+                  FlutterApp.virus,size: 35,
                 ),
               ],
-              color: Colors.white70,
+              color: Colors.white,
               buttonBackgroundColor: Colors.white,
-              backgroundColor: Colors.black38,
+              backgroundColor: Colors.black12,
               animationCurve: Curves.linearToEaseOut,
               animationDuration: Duration(milliseconds: 600),
               onTap: (index) {
@@ -106,7 +117,7 @@ class _newsState extends State<news> {
                       break;
                     case 3:
                       {
-                        aboutapp(context);
+                        youtube(context);
                         _currentindex = index;
                       }
                       break;
