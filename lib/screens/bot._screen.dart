@@ -6,6 +6,7 @@ import 'package:corona_app/screens/location_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'dart:io';
 import 'dart:async';
+import '../flutter_app_icons.dart';
 import 'noInternet.dart';
 import 'about_app.dart';
 
@@ -67,12 +68,13 @@ class _BotState extends State<Bot> {
   @override
   Widget build(BuildContext context) {
     int _currentindex =0;
+    GlobalKey _bottomNavigationKey = GlobalKey();
     return SafeArea(
           child: MaterialApp(
           title: 'App Name',
           home: Scaffold(
             bottomNavigationBar: CurvedNavigationBar(
-              index: _currentindex,
+              index: _currentindex,key: _bottomNavigationKey,
               height: 70.0,
               items: <Widget>[
                 Icon(Icons.public, size: 30),
@@ -80,13 +82,12 @@ class _BotState extends State<Bot> {
                 Icon(Icons.library_books, size: 30),
                 Icon(Icons.ondemand_video, size: 30),
                 Icon(
-                  Icons.bug_report,
-                  size: 30,
+                    FlutterApp.virus,size: 35
                 ),
               ],
               color: Colors.white70,
               buttonBackgroundColor: Colors.white,
-              backgroundColor: Colors.black38,
+              backgroundColor: Colors.black12,
               animationCurve: Curves.linearToEaseOut,
               animationDuration: Duration(milliseconds: 600),
               onTap: (index) {

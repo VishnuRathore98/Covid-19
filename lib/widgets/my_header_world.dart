@@ -21,7 +21,7 @@ class MyHeaderW extends StatelessWidget {
     return ClipPath(
       clipper: MyClipper(),
       child: Container(
-        padding: EdgeInsets.only(left: 10, top: 40, right: 10),
+        padding: EdgeInsets.only(left: 2, top: 40, right: 10),
         height: 250,
         width: double.infinity,
         decoration: BoxDecoration(
@@ -42,19 +42,19 @@ class MyHeaderW extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
 
-            SizedBox(height: 20),
+            SizedBox(height: 25),
             Expanded(
               child: Stack(
                 children: <Widget>[
-                  SvgPicture.asset(
+                  Image.asset(
                     image,
-                    width:300,
+                    width:190,
                     fit: BoxFit.fitWidth,
                     alignment: Alignment.topCenter,
                   ),
                   Positioned(
                     top: 20,
-                    left: 200,
+                    left: 175,
                     child: Text(
                       "$textTop \n$textBottom",
                       style: kHeadingTextStyle.copyWith(
