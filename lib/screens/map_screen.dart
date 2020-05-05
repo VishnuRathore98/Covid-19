@@ -1,5 +1,6 @@
 import 'package:corona_app/screens/world_screen.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:corona_app/screens/youtube.dart';
 import "package:flutter/material.dart";
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:corona_app/screens/location_screen.dart';
@@ -7,6 +8,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'dart:io';
 import 'dart:async';
 import '../flutter_app_icons.dart';
+import 'news.dart';
 import 'noInternet.dart';
 import 'about_app.dart';
 
@@ -16,26 +18,29 @@ class Maps extends StatefulWidget {
 }
 
 class _MapsState extends State<Maps> {
-  Future WorldScreen1(context) async {
+  Future LocationScreen1(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => WorldScreen()));
   }
 
-  Future aboutapp(context) async {
+  Future about_app1(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => about_app()));
   }
 
-  Future locationscreen1(context) async {
+  Future youtube(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LocationScreen()));
+        context, MaterialPageRoute(builder: (context) => PlaylistShow()));
+  }
+
+  Future news1(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => news()));
   }
 
   Future Nonet(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => noInternet()));
   }
-
 
   StreamSubscription connectivitySubscription;
   bool dialogshown = false;
@@ -71,18 +76,19 @@ class _MapsState extends State<Maps> {
     int _currentindex = 1;
     GlobalKey _bottomNavigationKey = GlobalKey();
     return SafeArea(
-          child: MaterialApp(
+      child: MaterialApp(
           title: 'App Name',
           home: Scaffold(
             bottomNavigationBar: CurvedNavigationBar(
-              index: _currentindex,key: _bottomNavigationKey,
+              index: _currentindex,
+              key: _bottomNavigationKey,
               height: 70.0,
               items: <Widget>[
                 Icon(Icons.public, size: 30),
                 Icon(Icons.search, size: 30),
                 Icon(Icons.library_books, size: 30),
                 Icon(Icons.ondemand_video, size: 30),
-                Icon(FlutterApp.virus,size: 35),
+                Icon(FlutterApp.virus, size: 35),
               ],
               color: Colors.white70,
               buttonBackgroundColor: Colors.white,
@@ -94,31 +100,26 @@ class _MapsState extends State<Maps> {
                   switch (index) {
                     case 0:
                       {
-                        WorldScreen1(context);
+                        LocationScreen1(context);
                         _currentindex = index;
                       }
                       break;
-                    case 1:
+                    case 2:
                       {
-                        locationscreen1(context);
+                        news1(context);
                         _currentindex = index;
                       }
                       break;
                     case 3:
                       {
-                        aboutapp(context);
+                        youtube(context);
                         _currentindex = index;
                       }
                       break;
                     case 4:
                       {
-                        aboutapp(context);
+                        about_app1(context);
                         _currentindex = index;
-                      }
-                      break;
-                    default:
-                      {
-
                       }
                       break;
                   }
@@ -132,7 +133,7 @@ class _MapsState extends State<Maps> {
             body: Stack(
               children: <Widget>[
                 new WebView(
-                  initialUrl: "https://maps.mapmyindia.com/corona?state",
+                  initialUrl: "https://www.covid19india.org/",
                   javascriptMode: JavascriptMode.unrestricted,
                   onPageFinished: (_) {
                     setState(() {

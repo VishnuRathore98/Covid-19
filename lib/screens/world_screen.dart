@@ -1,4 +1,5 @@
-// import 'package:corona_app/backend/worldData.dart';
+import 'dart:ffi';
+
 import 'package:corona_app/screens/location_screen.dart';
 import 'package:corona_app/screens/wolrd_load.dart';
 import 'package:corona_app/screens/youtube.dart';
@@ -26,9 +27,9 @@ class WorldScreen extends StatefulWidget {
 }
 
 class _WorldScreenState extends State<WorldScreen> {
-
   Future getData() async {
     final response = await http.get("https://corona.lmao.ninja/v2/all");
+    
     return jsonDecode(response.body);
   }
 
@@ -59,19 +60,20 @@ class _WorldScreenState extends State<WorldScreen> {
     connectivitySubscription.cancel();
   }
 
+  // Future 
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: FutureBuilder(
-            future: getData(),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) print(snapshot.error);
-              return (snapshot.hasData)?
-              new WorldScreen1(snapshot.data):
-              WorldLoad();
-
-
-            }));
+      child: FutureBuilder(
+          future: getData(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) print(snapshot.error);
+            return (snapshot.hasData)
+                ? new WorldScreen1(snapshot.data)
+                : WorldLoad();
+          }),
+    );
   }
 
   void checknet() {
@@ -95,7 +97,6 @@ class _WorldScreenState extends State<WorldScreen> {
           }
         });
       }
-
       _previousResult = connresult;
     });
   }
@@ -114,60 +115,46 @@ class _WorldScreen1State extends State<WorldScreen1> {
   var totalCases, totalDeaths, recovered, todayCases, activeCases, critical;
 
   var data = [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5, -1.0, -0.5, 0.0, 0.0];
-  var data1 = [0.0, -2.0, 3.5, -2.0, 0.5, 0.7, 0.8, 1.0, 2.0, 3.0, 3.2];
 
-  Material myTextItems(String title, String subtitle,Color color) {
-//    Color rang, var icon
+  Material myTextItems(String title, String subtitle, Color color) {
     return Material(
-      color: Colors.white,
-      elevation: 5.0,
-      borderRadius: BorderRadius.circular(10.0),
-      shadowColor: Color(0x802196F3),
+        color: Colors.white,
+        elevation: 5.0,
+        borderRadius: BorderRadius.circular(10.0),
+        shadowColor: Color(0x802196F3),
         child: Center(
           child: Padding(
-
             padding: EdgeInsets.all(8.0),
             child: Row(
-
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Flexible(
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-
-                    mainAxisAlignment: MainAxisAlignment.center,
-
-                    children: <Widget>[
-
-                      Text(
-                        title,
-                        style: TextStyle(
-                          fontSize: 25.0,
-//                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Iceland'
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          title,
+                          style: TextStyle(
+                              fontSize: 25.0,
+                              fontFamily: 'Iceland'),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                      ),
-
-                      Text(
-                        subtitle,
-                        style: TextStyle(
-                          fontSize: 30.0,
-                          color: color,
-                            fontFamily: 'Iceland'
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
                         ),
-                      ),
-                    ]
-                    ),
+                        Text(
+                          subtitle,
+                          style: TextStyle(
+                              fontSize: 30.0,
+                              color: color,
+                              fontFamily: 'Iceland'),
+                        ),
+                      ]),
                 )
-
               ],
             ),
           ),
-
-    ));
+        ));
   }
 
   Material mychart1Items(String title, var priceVal, String subtitle) {
@@ -185,7 +172,6 @@ class _WorldScreen1State extends State<WorldScreen1> {
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Wrap(
-//              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -241,9 +227,7 @@ class _WorldScreen1State extends State<WorldScreen1> {
     );
   }
 
-
   Future LocationScreen1(context) async {
-
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => LocationScreen()));
   }
@@ -281,17 +265,27 @@ class _WorldScreen1State extends State<WorldScreen1> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
+  Future _getData () async{
+    final response = await http.get("https://corona.lmao.ninja/v2/all");
+    var covidData = jsonDecode(response.body);
     setState(() {
-
       totalCases = covidData['cases'];
       totalDeaths = covidData['deaths'];
       recovered = covidData['recovered'];
       todayCases = covidData['todayCases'];
       activeCases = covidData['active'];
+    });
+  }
 
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      totalCases = covidData['cases'];
+      totalDeaths = covidData['deaths'];
+      recovered = covidData['recovered'];
+      todayCases = covidData['todayCases'];
+      activeCases = covidData['active'];
     });
     checknet();
   }
@@ -315,9 +309,13 @@ class _WorldScreen1State extends State<WorldScreen1> {
               width: 65,
               child: FloatingActionButton(
                 elevation: 10,
-                tooltip:"Chat Bot",
+                tooltip: "Chat Bot",
                 backgroundColor: Colors.white,
-                child: Icon(MyFlutterApp.chat,size: 47,color: Colors.black,),
+                child: Icon(
+                  MyFlutterApp.chat,
+                  size: 47,
+                  color: Colors.black,
+                ),
                 onPressed: () {
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context) => Bot()));
@@ -332,7 +330,7 @@ class _WorldScreen1State extends State<WorldScreen1> {
               Icon(Icons.search, size: 30),
               Icon(Icons.library_books, size: 30),
               Icon(Icons.ondemand_video, size: 30),
-              Icon(FlutterApp.virus,size: 35),
+              Icon(FlutterApp.virus, size: 35),
             ],
             color: Colors.white,
             buttonBackgroundColor: Colors.white,
@@ -366,80 +364,74 @@ class _WorldScreen1State extends State<WorldScreen1> {
                       _currentindex = index;
                     }
                     break;
-                  default:
-                    {
-                      print("defalut");
-                    }
-                    break;
                 }
               });
             },
           ),
-          body: SingleChildScrollView(
-            physics: ScrollPhysics(),
-            child: StaggeredGridView.count(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              crossAxisCount: 4,
-              crossAxisSpacing: 12.0,
-              mainAxisSpacing: 12.0,
-              children: <Widget>[
-                Container(
-                    child: Column(children: <Widget>[
-                  MyHeaderW(
-                    image: "images/world.png",
-                    textTop: "Covid-19 Spread",
-                    textBottom: "across World",
+          body: RefreshIndicator(
+            onRefresh: _getData,
+                      child: SingleChildScrollView(
+              physics: ScrollPhysics(),
+              child: StaggeredGridView.count(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                crossAxisCount: 4,
+                crossAxisSpacing: 12.0,
+                mainAxisSpacing: 12.0,
+                children: <Widget>[
+                  Container(
+                      child: Column(children: <Widget>[
+                    MyHeaderW(
+                      image: "images/world.png",
+                      textTop: "Covid-19 Spread",
+                      textBottom: "across World",
+                    ),
+                  ])),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: mychart1Items(
+                        "Total Cases", '$totalCases', "+ $todayCases today"),
                   ),
-                ])),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: mychart1Items(
-                      "Total Cases", '$totalCases', "+ $todayCases today"),
-                ),
-                // Padding(
-                //   padding: const EdgeInsets.all(8.0),
-                //   child: myCircularItems("Stats", "68.7M"),
-                // ),
-                Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: myTextItems(
-                      "Total Deaths", '$totalDeaths',Color(0xFFb71c1c)),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: myTextItems(
-                      "Recovered", '$recovered',Color(0xFF00C853)),
-                ),
-                    Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: myTextItems(
-                          "TodayCases", "+"+'$todayCases',Color(0xFFe57373)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: myTextItems(
-                          "ActiveCases", '$activeCases',Color(0xFF607D8B)),
-                    ),
-                Padding(
-                  padding: const EdgeInsets.all(8),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: myCircularItems("Stats", "68.7M"),
+                  // ),
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: myTextItems(
+                        "Total Deaths", '$totalDeaths', Color(0xFFb71c1c)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: myTextItems(
+                        "Recovered", '$recovered', Color(0xFF00C853)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: myTextItems(
+                        "TodayCases", "+" + '$todayCases', Color(0xFFe57373)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: myTextItems(
+                        "ActiveCases", '$activeCases', Color(0xFF607D8B)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                  ),
+                ],
+                staggeredTiles: [
+                  StaggeredTile.extent(4, 250.0),
+                  StaggeredTile.extent(4, 250.0),
+                  StaggeredTile.extent(2, 130.0),
+                  StaggeredTile.extent(2, 130.0),
+                  StaggeredTile.extent(2, 130.0),
+                  StaggeredTile.extent(2, 130.0),
+                  StaggeredTile.extent(2, 40.0)
 
-                ),
-
-               
-
-              ],
-              staggeredTiles: [
-                StaggeredTile.extent(4, 250.0),
-                StaggeredTile.extent(4, 250.0),
-                StaggeredTile.extent(2, 130.0),
-                StaggeredTile.extent(2, 130.0),
-                StaggeredTile.extent(2, 130.0),
-                StaggeredTile.extent(2, 130.0),
-                StaggeredTile.extent(2, 40.0)
-
-                // StaggeredTile.extent(4, 250.0),
-              ],
+                  // StaggeredTile.extent(4, 250.0),
+                ],
+              ),
             ),
           ),
         ),

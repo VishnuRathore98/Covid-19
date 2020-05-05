@@ -40,7 +40,6 @@ class _LocationScreenState extends State<LocationScreen> {
         context, MaterialPageRoute(builder: (context) => PlaylistShow()));
   }
 
-
   @override
   Widget build(BuildContext context) {
     int _currentindex = 1;
@@ -50,27 +49,33 @@ class _LocationScreenState extends State<LocationScreen> {
       home: SafeArea(
         child: Scaffold(
           floatingActionButton: Container(
-              height: 65,
-              width: 65,
+              margin: EdgeInsets.only(right: 10),
+              height: 95,
+              width: 75,
               child: FloatingActionButton(
-                tooltip:"India",
+                tooltip: "India",
                 elevation: 10,
                 backgroundColor: Colors.white,
-                child: Icon(MyFlutterApp.nation,size: 47,color: Colors.black,),
+                child: Icon(
+                  MyFlutterApp.nation,
+                  size: 57,
+                  color: Colors.black,
+                ),
                 onPressed: () {
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context) => Maps()));
                 },
               )),
           bottomNavigationBar: CurvedNavigationBar(
-            index: _currentindex,key: _bottomNavigationKey,
+            index: _currentindex,
+            key: _bottomNavigationKey,
             height: 70.0,
             items: <Widget>[
               Icon(Icons.public, size: 30),
               Icon(Icons.search, size: 30),
               Icon(Icons.library_books, size: 30),
               Icon(Icons.ondemand_video, size: 30),
-              Icon(FlutterApp.virus,size: 35),
+              Icon(FlutterApp.virus, size: 35),
             ],
             color: Colors.white,
             buttonBackgroundColor: Colors.white,
@@ -104,11 +109,6 @@ class _LocationScreenState extends State<LocationScreen> {
                       _currentindex = index;
                     }
                     break;
-                  default :
-                    {
-                      print("defalut");
-                    }
-                    break;
                 }
               });
             },
@@ -125,43 +125,46 @@ class _LocationScreenState extends State<LocationScreen> {
                 ),
                 Center(
                     child: TextField(
-                      cursorColor: Colors.white,
-                      controller: insertedValue,
-                      decoration: InputDecoration(
-                        labelText: 'Type Country Name',
-                      ),
-                    )),
+                  cursorColor: Colors.white,
+                  controller: insertedValue,
+                  decoration: InputDecoration(
+                    labelText: 'Type Country Name',
+                  ),
+                )),
                 SizedBox(
                   height: 20,
                 ),
-
                 Center(
                   child: Container(
                     height: 50,
                     width: 220,
                     child: RaisedButton(
                       elevation: 5.0,
-                      onPressed: ()  async{
-
-                          try {
-                            if (insertedValue.text != '') {
-                              var f = Fetching();
-                              var covidData = await f.getData(
-                                  insertedValue.text.toLowerCase());
+                      onPressed: () async {
+                        try {
+                          if (insertedValue.text != '') {
+                            var f = Fetching();
+                            var covidData = await f
+                                .getData(insertedValue.text.toLowerCase());
+                            if (covidData['message'] ==
+                                "Country not found or doesn't have any cases") {} 
+                            else {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          CountryScreen(covidData)));
+                                      builder: (context) => CountryScreen(
+                                          covidData,
+                                          insertedValue.text.toLowerCase())));
                             }
                           }
-                          catch (e) {
-                            print(e);
-                          }
-
-
+                        } catch (e) {
+                          print(e);
+                        }
                       },
-                      child: Text('Search',style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                      child: Text(
+                        'Search',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 25),
                       ),
                     ),
                   ),
@@ -179,8 +182,7 @@ class _LocationScreenState extends State<LocationScreen> {
       context: context,
       barrierDismissible: false,
       child: AlertDialog(
-        shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         title: Text(
           "NO Data Found",
         ),
@@ -189,8 +191,7 @@ class _LocationScreenState extends State<LocationScreen> {
         ),
         actions: <Widget>[
           FlatButton(
-            onPressed: () =>
-            { Navigator.pop(context)},
+            onPressed: () => {Navigator.pop(context)},
             child: Text("OK"),
           ),
         ],
