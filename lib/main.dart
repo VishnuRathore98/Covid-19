@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         DeviceOrientation.portraitUp,
       ]);
     return MaterialApp(
-      title: 'App Name',
+      title: 'Covid-19',
       initialRoute: 'wel',
       routes: {
         'wel': (context) => _MyAppState()

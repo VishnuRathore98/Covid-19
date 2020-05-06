@@ -8,10 +8,8 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'dart:io';
 import 'dart:async';
 import 'package:connectivity/connectivity.dart';
-import '../constant.dart';
 import '../flutter_app_icons.dart';
 import 'about_app.dart';
-import 'location_screen.dart';
 import 'news.dart';
 import 'noInternet.dart';
 
@@ -37,7 +35,7 @@ class _CountryScreenState extends State<CountryScreen> {
 
   StreamSubscription connectivitySubscription;
 
-  Future Nonet(context) async {
+  Future nonet(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => noInternet()));
   }
@@ -57,7 +55,7 @@ class _CountryScreenState extends State<CountryScreen> {
 
   Future _getData() async {
     var f = Fetching();
-    var covidData = await f.getData(cName);
+    var covidData = await f.getCovidData(cName);
     setState(() {
       countryName = covidData['country'];
       totalCases = covidData['cases'];
@@ -85,14 +83,14 @@ class _CountryScreenState extends State<CountryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Future LocationScreen1(context) async {
+    Future locationScreen1(context) async {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => WorldScreen()));
     }
 
-    Future about_app1(context) async {
+    Future aboutapp1(context) async {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => about_app()));
+          context, MaterialPageRoute(builder: (context) => About_app()));
     }
 
     Future youtube(context) async {
@@ -139,7 +137,7 @@ class _CountryScreenState extends State<CountryScreen> {
               switch (index) {
                 case 0:
                   {
-                    LocationScreen1(context);
+                    locationScreen1(context);
                     _currentindex = index;
                   }
                   break;
@@ -157,7 +155,7 @@ class _CountryScreenState extends State<CountryScreen> {
                   break;
                 case 4:
                   {
-                    about_app1(context);
+                    aboutapp1(context);
                     _currentindex = index;
                   }
                   break;
@@ -219,7 +217,7 @@ class _CountryScreenState extends State<CountryScreen> {
         .listen((ConnectivityResult connresult) {
       if (connresult == ConnectivityResult.none) {
         dialogshown = true;
-        Nonet(context);
+        nonet(context);
       } else if (_previousResult == ConnectivityResult.none) {
         checkinternet().then((result) {
           if (result == true) {

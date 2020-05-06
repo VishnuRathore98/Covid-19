@@ -1,26 +1,27 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:corona_app/screens/location_screen.dart';
 import 'package:corona_app/screens/world_screen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:corona_app/constant.dart';
 import 'package:corona_app/widgets/my_header.dart';
+import '../app_icon.dart';
 import '../flutter_app_icons.dart';
+import 'map_screen.dart';
 import 'news.dart';
 import 'noInternet.dart';
 import 'youtube.dart';
 
-class about_app extends StatefulWidget {
+class About_app extends StatefulWidget {
   @override
-  _about_appState createState() => _about_appState();
+  _About_AppState createState() => _About_AppState();
 }
 
-class _about_appState extends State<about_app> {
-  Future WorldScreen1(context) async {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => WorldScreen()));
+class _About_AppState extends State<About_app> {
+  Future worldScreen1(context) async {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => WorldScreen()));
   }
 
   Future news1(context) async {
@@ -29,12 +30,11 @@ class _about_appState extends State<about_app> {
 
   TextEditingController insertedValue = TextEditingController();
 
-  Future locationscreen1(context) async {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LocationScreen()));
+  Future india(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Maps()));
   }
 
-  Future Nonet(context) async {
+  Future nonet(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => noInternet()));
   }
@@ -43,6 +43,7 @@ class _about_appState extends State<about_app> {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => PlaylistShow()));
   }
+
   StreamSubscription connectivitySubscription;
 
   bool dialogshown = false;
@@ -78,18 +79,27 @@ class _about_appState extends State<about_app> {
     return MaterialApp(
       title: 'About Covid-19',
       home: MaterialApp(
-        title: 'App Name',
+        title: 'Covid-19',
         home: SafeArea(
           child: Scaffold(
+            floatingActionButton: Container(
+                height: 100,
+                child: FloatingActionButton(
+                    onPressed: () {},
+                    child: Icon(
+                      Icons.info,
+                      size: 65,
+                    ))),
             bottomNavigationBar: CurvedNavigationBar(
-              index: _currentindex,key: _bottomNavigationKey,
+              index: _currentindex,
+              key: _bottomNavigationKey,
               height: 70.0,
               items: <Widget>[
                 Icon(Icons.public, size: 30),
-                Icon(Icons.search, size: 30),
+                Icon(MyFlutterApp.nation, size: 30),
                 Icon(Icons.library_books, size: 30),
                 Icon(Icons.ondemand_video, size: 30),
-                Icon(FlutterApp.virus,size: 35),
+                Icon(FlutterApp.virus, size: 35),
               ],
               color: Colors.white70,
               buttonBackgroundColor: Colors.white,
@@ -101,13 +111,13 @@ class _about_appState extends State<about_app> {
                   switch (index) {
                     case 0:
                       {
-                        WorldScreen1(context);
+                        worldScreen1(context);
                         _currentindex = index;
                       }
                       break;
                     case 1:
                       {
-                        locationscreen1(context);
+                        india(context);
                         _currentindex = index;
                       }
                       break;
@@ -157,7 +167,6 @@ class _about_appState extends State<about_app> {
                             SymptomCard(
                               image: "images/headache.jpg",
                               title: "Headache",
-
                             ),
                             SymptomCard(
                               image: "images/cough.jpg",
@@ -188,7 +197,10 @@ class _about_appState extends State<about_app> {
                           ],
                         ),
                         SizedBox(height: 20),
-                        Text("Prevention", style: kTitleTextstyle,),
+                        Text(
+                          "Prevention",
+                          style: kTitleTextstyle,
+                        ),
                         SizedBox(height: 20),
                         PreventCard(
                           text:
@@ -196,7 +208,6 @@ class _about_appState extends State<about_app> {
                           image: "images/wear_mask.jpg",
                           title: "Wear face mask",
                         ),
-
                         PreventCard(
                           text:
                               "Hand-washing with soap and water is a far more powerful weapon against germs than many of us realize.",
@@ -236,7 +247,7 @@ class _about_appState extends State<about_app> {
         .listen((ConnectivityResult connresult) {
       if (connresult == ConnectivityResult.none) {
         dialogshown = true;
-        Nonet(context);
+        nonet(context);
       } else if (_previousResult == ConnectivityResult.none) {
         checkinternet().then((result) {
           if (result == true) {
@@ -273,11 +284,9 @@ class PreventCard extends StatelessWidget {
           alignment: Alignment.centerLeft,
           children: <Widget>[
             Container(
-
               height: 200,
               width: double.infinity,
               decoration: BoxDecoration(
-
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
                 boxShadow: [
@@ -297,26 +306,17 @@ class PreventCard extends StatelessWidget {
                 height: 130,
                 width: MediaQuery.of(context).size.width - 160,
                 child: Column(
-
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Text(
                       title,
                       style: kTitleTextstyle.copyWith(
-                        fontSize: 20,
-                          fontFamily: 'Iceland'
-                      ),
+                          fontSize: 20, fontFamily: 'Iceland'),
                     ),
-
-
-
                     Text(
                       text,
-                      style: TextStyle(
-                        fontSize:16,
-                          fontFamily: 'Iceland'
-                      ),
+                      style: TextStyle(fontSize: 16, fontFamily: 'Iceland'),
                     ),
                   ],
                 ),
@@ -349,18 +349,11 @@ class SymptomCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
           boxShadow: [
-//            isActive
-//                ?
-//            BoxShadow(
-//                    offset: Offset(0, 10),
-//                    blurRadius: 20,
-//                    color: kActiveShadowColor,
-//                  ):
-                 BoxShadow(
-                    offset: Offset(0, 10),
-                    blurRadius: 6,
-                    color: kShadowColor,
-                  ),
+            BoxShadow(
+              offset: Offset(0, 10),
+              blurRadius: 6,
+              color: kShadowColor,
+            ),
           ],
         ),
         child: Wrap(
@@ -369,7 +362,10 @@ class SymptomCard extends StatelessWidget {
             Center(
               child: Text(
                 title,
-                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17,fontFamily: 'Iceland'),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                    fontFamily: 'Iceland'),
               ),
             ),
           ],
@@ -378,3 +374,4 @@ class SymptomCard extends StatelessWidget {
     );
   }
 }
+

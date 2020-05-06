@@ -1,8 +1,5 @@
 import 'package:corona_app/constant.dart';
-// import 'package:corona_app/screens/about_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../constant.dart';
 
 class MyHeaderno extends StatelessWidget {

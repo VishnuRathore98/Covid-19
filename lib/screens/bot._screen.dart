@@ -1,8 +1,12 @@
+import 'package:corona_app/app_icon.dart';
+import 'package:corona_app/backend/fetching.dart';
+import 'package:corona_app/screens/map_screen.dart';
+import 'package:corona_app/screens/news.dart';
 import 'package:corona_app/screens/world_screen.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:corona_app/screens/youtube.dart';
 import "package:flutter/material.dart";
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:corona_app/screens/location_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'dart:io';
 import 'dart:async';
@@ -16,22 +20,31 @@ class Bot extends StatefulWidget {
 }
 
 class _BotState extends State<Bot> {
-  Future WorldScreen1(context) async {
+  var url = Fetching().getBotData();
+  Future worldScreen1(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => WorldScreen()));
   }
 
   Future aboutapp(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => about_app()));
+        context, MaterialPageRoute(builder: (context) => About_app()));
   }
 
-  Future locationscreen1(context) async {
+  Future indiaMap(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Maps()));
+  }
+
+  Future youtube(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LocationScreen()));
+        context, MaterialPageRoute(builder: (context) => PlaylistShow()));
   }
 
-  Future Nonet(context) async {
+  Future news1(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => news()));
+  }
+
+  Future nonet(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => noInternet()));
   }
@@ -67,23 +80,22 @@ class _BotState extends State<Bot> {
 
   @override
   Widget build(BuildContext context) {
-    int _currentindex =0;
+    int _currentindex = 0;
     GlobalKey _bottomNavigationKey = GlobalKey();
     return SafeArea(
-          child: MaterialApp(
-          title: 'App Name',
+      child: MaterialApp(
+          title: 'Covid-19',
           home: Scaffold(
             bottomNavigationBar: CurvedNavigationBar(
-              index: _currentindex,key: _bottomNavigationKey,
+              index: _currentindex,
+              key: _bottomNavigationKey,
               height: 70.0,
               items: <Widget>[
                 Icon(Icons.public, size: 30),
-                Icon(Icons.search, size: 30),
+                Icon(MyFlutterApp.nation, size: 30),
                 Icon(Icons.library_books, size: 30),
                 Icon(Icons.ondemand_video, size: 30),
-                Icon(
-                    FlutterApp.virus,size: 35
-                ),
+                Icon(FlutterApp.virus, size: 35),
               ],
               color: Colors.white70,
               buttonBackgroundColor: Colors.white,
@@ -95,19 +107,25 @@ class _BotState extends State<Bot> {
                   switch (index) {
                     case 0:
                       {
-                        WorldScreen1(context);
+                        worldScreen1(context);
                         _currentindex = index;
                       }
                       break;
                     case 1:
                       {
-                        locationscreen1(context);
+                        indiaMap(context);
+                        _currentindex = index;
+                      }
+                      break;
+                    case 2:
+                      {
+                        news1(context);
                         _currentindex = index;
                       }
                       break;
                     case 3:
                       {
-                        aboutapp(context);
+                        youtube(context);
                         _currentindex = index;
                       }
                       break;
@@ -133,7 +151,7 @@ class _BotState extends State<Bot> {
             body: Stack(
               children: <Widget>[
                 new WebView(
-                  initialUrl: "https://covid.apollo247.com/?utm_source=twitter&utm_medium=organic&utm_campaign=bot_scanner",
+                  initialUrl: url,
                   javascriptMode: JavascriptMode.unrestricted,
                   onPageFinished: (_) {
                     setState(() {
@@ -159,7 +177,7 @@ class _BotState extends State<Bot> {
         .listen((ConnectivityResult connresult) {
       if (connresult == ConnectivityResult.none) {
         dialogshown = true;
-        Nonet(context);
+        nonet(context);
       } else if (_previousResult == ConnectivityResult.none) {
         checkinternet().then((result) {
           if (result == true) {

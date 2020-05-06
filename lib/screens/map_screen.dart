@@ -1,9 +1,10 @@
+import 'package:corona_app/app_icon.dart';
+import 'package:corona_app/backend/fetching.dart';
 import 'package:corona_app/screens/world_screen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:corona_app/screens/youtube.dart';
 import "package:flutter/material.dart";
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:corona_app/screens/location_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'dart:io';
 import 'dart:async';
@@ -18,14 +19,15 @@ class Maps extends StatefulWidget {
 }
 
 class _MapsState extends State<Maps> {
-  Future LocationScreen1(context) async {
+  var url = Fetching().getMapData();
+  Future locationScreen1(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => WorldScreen()));
   }
 
-  Future about_app1(context) async {
+  Future aboutapp1(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => about_app()));
+        context, MaterialPageRoute(builder: (context) => About_app()));
   }
 
   Future youtube(context) async {
@@ -37,7 +39,7 @@ class _MapsState extends State<Maps> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => news()));
   }
 
-  Future Nonet(context) async {
+  Future noNet(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => noInternet()));
   }
@@ -77,7 +79,7 @@ class _MapsState extends State<Maps> {
     GlobalKey _bottomNavigationKey = GlobalKey();
     return SafeArea(
       child: MaterialApp(
-          title: 'App Name',
+          title: 'Covid-19',
           home: Scaffold(
             bottomNavigationBar: CurvedNavigationBar(
               index: _currentindex,
@@ -85,7 +87,7 @@ class _MapsState extends State<Maps> {
               height: 70.0,
               items: <Widget>[
                 Icon(Icons.public, size: 30),
-                Icon(Icons.search, size: 30),
+                Icon(MyFlutterApp.nation, size: 34),
                 Icon(Icons.library_books, size: 30),
                 Icon(Icons.ondemand_video, size: 30),
                 Icon(FlutterApp.virus, size: 35),
@@ -100,7 +102,7 @@ class _MapsState extends State<Maps> {
                   switch (index) {
                     case 0:
                       {
-                        LocationScreen1(context);
+                        locationScreen1(context);
                         _currentindex = index;
                       }
                       break;
@@ -118,7 +120,7 @@ class _MapsState extends State<Maps> {
                       break;
                     case 4:
                       {
-                        about_app1(context);
+                        aboutapp1(context);
                         _currentindex = index;
                       }
                       break;
@@ -133,7 +135,7 @@ class _MapsState extends State<Maps> {
             body: Stack(
               children: <Widget>[
                 new WebView(
-                  initialUrl: "https://www.covid19india.org/",
+                  initialUrl: url,
                   javascriptMode: JavascriptMode.unrestricted,
                   onPageFinished: (_) {
                     setState(() {
@@ -159,7 +161,7 @@ class _MapsState extends State<Maps> {
         .listen((ConnectivityResult connresult) {
       if (connresult == ConnectivityResult.none) {
         dialogshown = true;
-        Nonet(context);
+        noNet(context);
       } else if (_previousResult == ConnectivityResult.none) {
         checkinternet().then((result) {
           if (result == true) {

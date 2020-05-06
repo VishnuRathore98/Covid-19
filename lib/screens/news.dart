@@ -1,12 +1,14 @@
+import 'package:corona_app/backend/fetching.dart';
 import 'package:corona_app/screens/world_screen.dart';
 import 'package:connectivity/connectivity.dart';
 import "package:flutter/material.dart";
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:corona_app/screens/location_screen.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'dart:io';
 import 'dart:async';
+import '../app_icon.dart';
 import '../flutter_app_icons.dart';
+import 'map_screen.dart';
 import 'noInternet.dart';
 import 'about_app.dart';
 import 'youtube.dart';
@@ -19,23 +21,23 @@ class news extends StatefulWidget {
 
 // ignore: camel_case_types
 class _newsState extends State<news> {
-
-  Future WorldScreen1(context) async {
+String url = Fetching().getNewsData();
+  Future worldScreen1(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => WorldScreen()));
   }
 
   Future aboutapp(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => about_app()));
+        context, MaterialPageRoute(builder: (context) => About_app()));
   }
 
-  Future locationscreen1(context) async {
+  Future india(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LocationScreen()));
+        context, MaterialPageRoute(builder: (context) => Maps()));
   }
 
-  Future Nonet(context) async {
+  Future nonet(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => noInternet()));
   }
@@ -80,7 +82,7 @@ class _newsState extends State<news> {
     GlobalKey _bottomNavigationKey = GlobalKey();
     return SafeArea(
           child: MaterialApp(
-          title: 'App Name',
+          title:'Covid-19',
           home: Scaffold(
             bottomNavigationBar: CurvedNavigationBar(
               index: _currentindex,
@@ -88,7 +90,7 @@ class _newsState extends State<news> {
               height: 70.0,
               items: <Widget>[
                 Icon(Icons.public, size: 30),
-                Icon(Icons.search, size: 30),
+                Icon(MyFlutterApp.nation, size: 30),
                 Icon(Icons.library_books, size: 30),
                 Icon(Icons.ondemand_video, size: 30),
                 Icon(
@@ -105,13 +107,13 @@ class _newsState extends State<news> {
                   switch (index) {
                     case 0:
                       {
-                        WorldScreen1(context);
+                        worldScreen1(context);
                         _currentindex = index;
                       }
                       break;
                     case 1:
                       {
-                        locationscreen1(context);
+                        india(context);
                         _currentindex = index;
                       }
                       break;
@@ -143,7 +145,7 @@ class _newsState extends State<news> {
             body: Stack(
               children: <Widget>[
                 new WebView(
-                  initialUrl: "https://inshorts.com/en/read/national",
+                  initialUrl: url,
                   javascriptMode: JavascriptMode.unrestricted,
                   onPageFinished: (_) {
                     setState(() {
@@ -169,7 +171,7 @@ class _newsState extends State<news> {
         .listen((ConnectivityResult connresult) {
       if (connresult == ConnectivityResult.none) {
         dialogshown = true;
-        Nonet(context);
+        nonet(context);
       } else if (_previousResult == ConnectivityResult.none) {
         checkinternet().then((result) {
           if (result == true) {

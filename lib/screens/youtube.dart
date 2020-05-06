@@ -1,3 +1,4 @@
+import 'package:corona_app/backend/fetching.dart';
 import 'package:corona_app/widgets/my_header_world.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import "package:flutter/material.dart";
@@ -6,9 +7,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:shimmer/shimmer.dart';
+import '../app_icon.dart';
 import '../flutter_app_icons.dart';
 import 'about_app.dart';
-import 'location_screen.dart';
+import 'map_screen.dart';
 import 'news.dart';
 import 'noInternet.dart';
 import 'world_screen.dart';
@@ -19,32 +21,32 @@ class PlaylistShow extends StatefulWidget {
 }
 
 class _PlaylistShowState extends State<PlaylistShow> {
+  String url = Fetching().getYoutubeData();
+  
   Future getData() async {
-    final response = await http.get(
-        "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=25&playlistId=PLq3AjOpSL6-1WmuNfVX199z6GsRJhU3J0&key=AIzaSyCTIJWdE_JIEesHHJYy5lGvflUdf-3lEIs");
+    final response = await http.get(url);
     return jsonDecode(response.body);
   }
 
-  Future WorldScreen1(context) async {
+  Future worldScreen1(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => WorldScreen()));
   }
 
   Future aboutapp(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => about_app()));
+        context, MaterialPageRoute(builder: (context) => About_app()));
   }
 
-  Future locationscreen1(context) async {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LocationScreen()));
+  Future india(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Maps()));
   }
 
   Future news1(context) async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => news()));
   }
 
-  Future Nonet(context) async {
+  Future nonet(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => noInternet()));
   }
@@ -54,7 +56,7 @@ class _PlaylistShowState extends State<PlaylistShow> {
     int _currentindex = 3;
     GlobalKey _bottomNavigationKey = GlobalKey();
     return MaterialApp(
-      title: 'App Name',
+      title: 'Covid-19',
       home: SafeArea(
         child: Scaffold(
             bottomNavigationBar: CurvedNavigationBar(
@@ -63,7 +65,7 @@ class _PlaylistShowState extends State<PlaylistShow> {
               height: 70.0,
               items: <Widget>[
                 Icon(Icons.public, size: 30),
-                Icon(Icons.search, size: 30),
+                Icon(MyFlutterApp.nation, size: 30),
                 Icon(Icons.library_books, size: 30),
                 Icon(Icons.ondemand_video, size: 30),
                 Icon(FlutterApp.virus, size: 35),
@@ -78,13 +80,13 @@ class _PlaylistShowState extends State<PlaylistShow> {
                   switch (index) {
                     case 0:
                       {
-                        WorldScreen1(context);
+                        worldScreen1(context);
                         _currentindex = index;
                       }
                       break;
                     case 1:
                       {
-                        locationscreen1(context);
+                        india(context);
                         _currentindex = index;
                       }
                       break;
@@ -132,7 +134,7 @@ class _PlaylistShowState extends State<PlaylistShow> {
 }
 
 class ListVideo extends StatelessWidget {
-  var list;
+  final list;
   ListVideo(this.list);
   @override
   Widget build(BuildContext context) {

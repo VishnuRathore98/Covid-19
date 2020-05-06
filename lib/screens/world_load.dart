@@ -1,15 +1,11 @@
-
 import 'dart:io';
-
 import 'package:connectivity/connectivity.dart';
-import 'package:corona_app/screens/location_screen.dart';
+import 'package:corona_app/screens/map_screen.dart';
 import 'package:corona_app/screens/youtube.dart';
 import 'package:corona_app/widgets/my_header_world.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-
 import 'dart:async';
 import 'package:flutter/material.dart';
-
 import '../app_icon.dart';
 import '../flutter_app_icons.dart';
 import 'bot._screen.dart';
@@ -25,15 +21,15 @@ class WorldLoad extends StatefulWidget {
 
 class _WorldLoadState extends State<WorldLoad> {
 
-  Future LocationScreen1(context) async {
+  Future locationScreen1(context) async {
 
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => LocationScreen()));
+        context, MaterialPageRoute(builder: (context) => Maps()));
   }
 
-  Future about_app1(context) async {
+  Future aboutapp1(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => about_app()));
+        context, MaterialPageRoute(builder: (context) => About_app()));
   }
 
   Future youtube(context) async {
@@ -45,7 +41,7 @@ class _WorldLoadState extends State<WorldLoad> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => news()));
   }
 
-  Future Nonet(context) async {
+  Future nonet(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => noInternet()));
   }
@@ -103,7 +99,7 @@ class _WorldLoadState extends State<WorldLoad> {
             height: 70.0,
             items: <Widget>[
               Icon(Icons.public, size: 30),
-              Icon(Icons.search, size: 30),
+              Icon(MyFlutterApp.nation, size: 30),
               Icon(Icons.library_books, size: 30),
               Icon(Icons.ondemand_video, size: 30),
               Icon(FlutterApp.virus,size: 35),
@@ -118,7 +114,7 @@ class _WorldLoadState extends State<WorldLoad> {
                 switch (index) {
                   case 1:
                     {
-                      LocationScreen1(context);
+                      locationScreen1(context);
                       _currentindex = index;
                     }
                     break;
@@ -136,7 +132,7 @@ class _WorldLoadState extends State<WorldLoad> {
                     break;
                   case 4:
                     {
-                      about_app1(context);
+                      aboutapp1(context);
                       _currentindex = index;
                     }
                     break;
@@ -199,7 +195,7 @@ class _WorldLoadState extends State<WorldLoad> {
         .listen((ConnectivityResult connresult) {
       if (connresult == ConnectivityResult.none) {
         dialogshown = true;
-        Nonet(context);
+        nonet(context);
       } else if (_previousResult == ConnectivityResult.none) {
         checkinternet().then((result) {
           if (result == true) {
