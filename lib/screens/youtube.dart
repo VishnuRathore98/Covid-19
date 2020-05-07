@@ -147,20 +147,18 @@ class ListVideo extends StatelessWidget {
               shrinkWrap: true,
               itemCount: list == null ? 0 : list['pageInfo']['totalResults'],
               itemBuilder: (context, i) {
-                int j = (list['pageInfo']['totalResults'] - 1) - i;
-
                 return new GestureDetector(
                   onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                       builder: (BuildContext context) => new PlaylistShowVideo(
-                          "https://youtube.com/embed/${list['items'][j]['contentDetails']['videoId']}"))),
+                          "https://youtube.com/embed/${list['items'][i]['contentDetails']['videoId']}"))),
                   child: Container(
                       child: Column(
                     children: <Widget>[
                       Padding(padding: EdgeInsets.all(8)),
                       ListTile(
-                          leading: Image.network(list['items'][j]['snippet']
+                          leading: Image.network(list['items'][i]['snippet']
                               ['thumbnails']['high']['url']),
-                          title: Text(list['items'][j]['snippet']['title'])),
+                          title: Text(list['items'][i]['snippet']['title'])),
                       Divider(thickness: 2, color: Colors.black26),
                       // Padding(padding: EdgeInsets.all(8))
                     ],

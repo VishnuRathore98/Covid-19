@@ -15,8 +15,6 @@ class MyApp extends StatelessWidget {
         DeviceOrientation.portraitUp,
       ]);
     return MaterialApp(
-      theme: ThemeData.from(colorScheme: ColorScheme.light()),
-      darkTheme: ThemeData.from(colorScheme: ColorScheme.dark()),
       title: 'Covid-19',
       initialRoute: 'wel',
       routes: {

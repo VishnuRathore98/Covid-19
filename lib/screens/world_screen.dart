@@ -168,7 +168,7 @@ class _WorldScreen1State extends State<WorldScreen1> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24.0),
             image: DecorationImage(
-                image: AssetImage('images/spread.gif'), fit: BoxFit.cover)),
+                image: AssetImage('gif/spread.gif'), fit: BoxFit.cover)),
         child: Center(
           child: Padding(
             padding: EdgeInsets.all(8.0),
@@ -435,10 +435,6 @@ class _WorldScreen1State extends State<WorldScreen1> {
                     child: mychart1Items(
                         "Total Cases", '$totalCases', "+ $todayCases today"),
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.all(8.0),
-                  //   child: myCircularItems("Stats", "68.7M"),
-                  // ),
                   Padding(
                     padding: const EdgeInsets.all(5),
                     child: myTextItems(
@@ -467,10 +463,10 @@ class _WorldScreen1State extends State<WorldScreen1> {
                   StaggeredTile.extent(4, 250.0),
                   StaggeredTile.extent(4, 70.0),
                   StaggeredTile.extent(4, 250.0),
-                  StaggeredTile.extent(2, 130.0),
-                  StaggeredTile.extent(2, 130.0),
-                  StaggeredTile.extent(2, 130.0),
-                  StaggeredTile.extent(2, 130.0),
+                  StaggeredTile.extent(2, 170.0),
+                  StaggeredTile.extent(2, 170.0),
+                  StaggeredTile.extent(2, 170.0),
+                  StaggeredTile.extent(2, 170.0),
                   StaggeredTile.extent(2, 40.0)
 
                   // StaggeredTile.extent(4, 250.0),

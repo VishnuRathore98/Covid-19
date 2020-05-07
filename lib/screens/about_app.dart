@@ -85,7 +85,9 @@ class _AboutAppState extends State<AboutApp> {
             floatingActionButton: Container(
                 height: 100,
                 child: FloatingActionButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Credits()));
+                    },
                     child: Icon(
                       Icons.info,
                       size: 65,
@@ -378,8 +380,48 @@ class SymptomCard extends StatelessWidget {
 class Credits extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return SafeArea(
+      child: Scaffold(
+        body: PageView(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("images/cover_page.png"),
+                    fit: BoxFit.contain),
+              ),
+            ),
+             Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("images/1.png"),
+                    fit: BoxFit.contain),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("images/2.png"),
+                    fit: BoxFit.contain),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("images/3.png"),
+                    fit: BoxFit.contain),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("images/credits.png"),
+                    fit: BoxFit.contain),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -185,12 +185,12 @@ class _CountryScreenState extends State<CountryScreen> {
               padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
               children: <Widget>[
                 tile("Total Cases", totalCases, Colors.blueGrey),
-                tile("Recovered", recovered, Color(0xFF00C853)),
-                tile("Total Deaths", totalDeaths, Color(0xFFb71c1c)),
-                tile("Today Cases", todayCases, Colors.grey[600]),
-                tile("Today Deaths", todayDeaths, Colors.grey[600]),
-                tile("Active Cases", active, Colors.grey[600]),
-                tile("Critical", critical, Colors.grey[600]),
+                tile("Recovered", recovered, Colors.green[500]),
+                tile("Total Deaths", totalDeaths, Colors.red[500]),
+                tile("Today Cases", todayCases, Colors.blue[500]),
+                tile("Today Deaths", todayDeaths, Colors.blue[500]),
+                tile("Active Cases", active, Colors.blue[500]),
+                tile("Critical", critical, Colors.blue[500]),
               ],
               staggeredTiles: [
                 // StaggeredTile.extent(1, 155),
