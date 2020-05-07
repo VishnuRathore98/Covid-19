@@ -144,10 +144,6 @@ class _BotState extends State<Bot> {
                 });
               },
             ),
-
-//          appBar: AppBar(
-//            title: Text('About Covid-19'),
-//          ),
             body: Stack(
               children: <Widget>[
                 new WebView(

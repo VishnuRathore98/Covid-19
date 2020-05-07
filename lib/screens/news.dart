@@ -138,10 +138,6 @@ String url = Fetching().getNewsData();
                 });
               },
             ),
-
-//          appBar: AppBar(
-//            title: Text('About Covid-19'),
-//          ),
             body: Stack(
               children: <Widget>[
                 new WebView(
