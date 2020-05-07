@@ -1,17 +1,17 @@
-import 'package:corona_app/backend/fetching.dart';
-import 'package:corona_app/screens/world_screen.dart';
-import 'package:connectivity/connectivity.dart';
-import "package:flutter/material.dart";
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'dart:io';
 import 'dart:async';
+import 'youtube.dart';
+import 'about_app.dart';
+import 'noInternet.dart';
+import 'map_screen.dart';
 import '../app_icon.dart';
 import '../flutter_app_icons.dart';
-import 'map_screen.dart';
-import 'noInternet.dart';
-import 'about_app.dart';
-import 'youtube.dart';
+import "package:flutter/material.dart";
+import 'package:connectivity/connectivity.dart';
+import 'package:corona_app/backend/fetching.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:corona_app/screens/world_screen.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 // ignore: camel_case_types
 class news extends StatefulWidget {
@@ -29,7 +29,7 @@ String url = Fetching().getNewsData();
 
   Future aboutapp(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => About_app()));
+        context, MaterialPageRoute(builder: (context) => AboutApp()));
   }
 
   Future india(context) async {
@@ -39,7 +39,7 @@ String url = Fetching().getNewsData();
 
   Future nonet(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => noInternet()));
+        context, MaterialPageRoute(builder: (context) => NoInternet()));
   }
 
   Future youtube(context) async {

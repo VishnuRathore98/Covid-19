@@ -1,24 +1,24 @@
-import 'dart:async';
 import 'dart:io';
-import 'package:corona_app/screens/world_screen.dart';
-import 'package:connectivity/connectivity.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter/material.dart';
-import 'package:corona_app/constant.dart';
-import 'package:corona_app/widgets/my_header.dart';
+import 'news.dart';
+import 'dart:async';
+import 'youtube.dart';
+import 'noInternet.dart';
+import 'map_screen.dart';
 import '../app_icon.dart';
 import '../flutter_app_icons.dart';
-import 'map_screen.dart';
-import 'news.dart';
-import 'noInternet.dart';
-import 'youtube.dart';
+import 'package:flutter/material.dart';
+import 'package:corona_app/constant.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:corona_app/widgets/my_header.dart';
+import 'package:corona_app/screens/world_screen.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-class About_app extends StatefulWidget {
+class AboutApp extends StatefulWidget {
   @override
-  _About_AppState createState() => _About_AppState();
+  _AboutAppState createState() => _AboutAppState();
 }
 
-class _About_AppState extends State<About_app> {
+class _AboutAppState extends State<AboutApp> {
   Future worldScreen1(context) async {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => WorldScreen()));
@@ -36,7 +36,7 @@ class _About_AppState extends State<About_app> {
 
   Future nonet(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => noInternet()));
+        context, MaterialPageRoute(builder: (context) => NoInternet()));
   }
 
   Future youtube(context) async {

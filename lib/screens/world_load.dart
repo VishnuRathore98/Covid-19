@@ -1,18 +1,18 @@
 import 'dart:io';
+import 'news.dart';
+import 'dart:async';
+import 'about_app.dart';
+import 'noInternet.dart';
+import '../app_icon.dart';
+import 'bot._screen.dart';
+import '../flutter_app_icons.dart';
+import 'package:flutter/material.dart';
+import 'package:corona_app/app_icon.dart';
 import 'package:connectivity/connectivity.dart';
-import 'package:corona_app/screens/map_screen.dart';
 import 'package:corona_app/screens/youtube.dart';
+import 'package:corona_app/screens/map_screen.dart';
 import 'package:corona_app/widgets/my_header_world.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'dart:async';
-import 'package:flutter/material.dart';
-import '../app_icon.dart';
-import '../flutter_app_icons.dart';
-import 'bot._screen.dart';
-import 'noInternet.dart';
-import 'about_app.dart';
-import 'news.dart';
-import 'package:corona_app/app_icon.dart';
 
 class WorldLoad extends StatefulWidget {
   @override
@@ -29,7 +29,7 @@ class _WorldLoadState extends State<WorldLoad> {
 
   Future aboutapp1(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => About_app()));
+        context, MaterialPageRoute(builder: (context) => AboutApp()));
   }
 
   Future youtube(context) async {
@@ -43,7 +43,7 @@ class _WorldLoadState extends State<WorldLoad> {
 
   Future nonet(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => noInternet()));
+        context, MaterialPageRoute(builder: (context) => NoInternet()));
   }
 
   StreamSubscription connectivitySubscription;

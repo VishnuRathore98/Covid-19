@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
-import 'package:corona_app/screens/world_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:corona_app/screens/world_screen.dart';
 
 
 void main() async {runApp(MyApp());}

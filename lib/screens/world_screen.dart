@@ -1,25 +1,26 @@
-import 'package:corona_app/backend/fetching.dart';
-import 'package:corona_app/screens/country_screen.dart';
-import 'package:corona_app/screens/world_load.dart';
-import 'package:corona_app/screens/youtube.dart';
-import 'package:corona_app/widgets/my_header_world.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'dart:io';
+import 'news.dart';
 import 'dart:async';
-import 'package:connectivity/connectivity.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import '../app_icon.dart';
-import '../flutter_app_icons.dart';
-import 'bot._screen.dart';
+import 'dart:convert';
+import 'about_app.dart';
 import 'map_screen.dart';
 import 'noInternet.dart';
-import 'about_app.dart';
-import 'news.dart';
-import 'package:flutter_sparkline/flutter_sparkline.dart';
+import '../app_icon.dart';
+import 'bot._screen.dart';
+import '../flutter_app_icons.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:corona_app/app_icon.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:corona_app/screens/youtube.dart';
+import 'package:corona_app/backend/fetching.dart';
+import 'package:corona_app/screens/world_load.dart';
+import 'package:corona_app/screens/country_screen.dart';
+import 'package:corona_app/widgets/my_header_world.dart';
+import 'package:flutter_sparkline/flutter_sparkline.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
 
 class WorldScreen extends StatefulWidget {
   @override
@@ -86,7 +87,7 @@ class _WorldScreenState extends State<WorldScreen> {
       if (connresult == ConnectivityResult.none) {
         dialogshown = true;
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => noInternet()));
+            context, MaterialPageRoute(builder: (context) => NoInternet()));
       } else if (_previousResult == ConnectivityResult.none) {
         checkinternet().then((result) {
           if (result == true) {
@@ -233,7 +234,7 @@ class _WorldScreen1State extends State<WorldScreen1> {
 
   Future aboutapp1(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => About_app()));
+        context, MaterialPageRoute(builder: (context) => AboutApp()));
   }
 
   Future youtube(context) async {
@@ -247,7 +248,7 @@ class _WorldScreen1State extends State<WorldScreen1> {
 
   Future nonet(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => noInternet()));
+        context, MaterialPageRoute(builder: (context) => NoInternet()));
   }
 
   StreamSubscription connectivitySubscription;

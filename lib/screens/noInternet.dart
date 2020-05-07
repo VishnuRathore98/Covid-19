@@ -1,21 +1,16 @@
-import 'package:corona_app/widgets/header_nointernet.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import '../flutter_app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:corona_app/widgets/header_nointernet.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
-import '../flutter_app_icons.dart';
-
-// ignore: camel_case_types
-class noInternet extends StatefulWidget {
-  @override
-  _noInternetState createState() => _noInternetState();
+class NoInternet extends StatefulWidget {
+@override
+  _NoInternetState createState() => _NoInternetState();
 }
 
 
-// ignore: camel_case_types
-class _noInternetState extends State<noInternet> {
-
-
+class _NoInternetState extends State<NoInternet> {
   @override
   Widget build(BuildContext context) {
     int _currentindex = 0;
@@ -23,7 +18,6 @@ class _noInternetState extends State<noInternet> {
     return MaterialApp(
       title: 'Covid-19',
       home: Scaffold(
-
         bottomNavigationBar: CurvedNavigationBar(
           index: _currentindex,
           height: 70.0,
@@ -80,18 +74,15 @@ class _noInternetState extends State<noInternet> {
                     MyHeaderno(
                       textTop: "",
                       textBottom: "",
-
                     ),
                     Padding(
                       padding: const EdgeInsets.all(1),
                       child: Container(
                         child: Image.asset('gif/Internet1.gif'),
                         height: 300.0,
-
                       ),
                     ),
                     Center(
-
                         child: Padding(
                           padding: const EdgeInsets.all(2),
                           child: Text("No connection",
@@ -99,11 +90,9 @@ class _noInternetState extends State<noInternet> {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black87,
                                 fontSize: 23.0,
-
                               )
                           ),
                         )
-
                     ),
                     Center(
                         child: Padding(
@@ -116,7 +105,6 @@ class _noInternetState extends State<noInternet> {
                               )
                           ),
                         )
-
                     ),
                     Center(
                         child: Padding(
@@ -131,58 +119,13 @@ class _noInternetState extends State<noInternet> {
                             ),
                           )
                         )
-
                     ),
                   ]
               ),
-
             ),
           ),
         ),
       ),
     );
   }
-//  checknet() {
-//    ConnectivityResult _previousResult;
-//
-//    bool dialogshown = false;
-//    var connectivitySubscription = Connectivity()
-//        .onConnectivityChanged
-//        .listen((ConnectivityResult connresult) {
-//      if (connresult == ConnectivityResult.none) {
-//        dialogshown = true;
-//        showDialog(
-//            barrierDismissible: false,
-//            context: context,builder: (_) => AssetGiffyDialog(
-//          image: Image.asset('gif/internet.gif'),
-//          title: Text('NO Internet Connection Found',
-//            textAlign: TextAlign.center,
-//            style: TextStyle(
-//                fontSize: 22.0, fontWeight: FontWeight.w600),
-//          ),
-//          description: Text('Check your Internet Connection and try again',
-//            textAlign: TextAlign.center,
-//            style: TextStyle(),
-//          ),
-//          entryAnimation:EntryAnimation.BOTTOM_RIGHT,
-//          onlyOkButton: true,
-//          onOkButtonPressed:() {
-//            SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-//          },
-//        ) );
-//      } else if (_previousResult == ConnectivityResult.none) {
-//        checkinternet().then((result) {
-//          if (result == true) {
-//            if (dialogshown == true) {
-//              dialogshown = false;
-//              Navigator.pop(context);
-//            }
-//          }
-//        });
-//      }
-//
-//      _previousResult = connresult;
-//    });
-//
-//  }
 }

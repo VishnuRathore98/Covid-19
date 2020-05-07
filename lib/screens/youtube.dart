@@ -1,19 +1,20 @@
+import 'news.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'about_app.dart';
+import 'map_screen.dart';
+import 'noInternet.dart';
+import '../app_icon.dart';
+import 'world_screen.dart';
+import '../flutter_app_icons.dart';
+import 'package:shimmer/shimmer.dart';
+import "package:flutter/material.dart";
+import 'package:http/http.dart' as http;
 import 'package:corona_app/backend/fetching.dart';
 import 'package:corona_app/widgets/my_header_world.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import "package:flutter/material.dart";
-import 'dart:async';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'package:shimmer/shimmer.dart';
-import '../app_icon.dart';
-import '../flutter_app_icons.dart';
-import 'about_app.dart';
-import 'map_screen.dart';
-import 'news.dart';
-import 'noInternet.dart';
-import 'world_screen.dart';
+
 
 class PlaylistShow extends StatefulWidget {
   @override
@@ -35,7 +36,7 @@ class _PlaylistShowState extends State<PlaylistShow> {
 
   Future aboutapp(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => About_app()));
+        context, MaterialPageRoute(builder: (context) => AboutApp()));
   }
 
   Future india(context) async {
@@ -48,7 +49,7 @@ class _PlaylistShowState extends State<PlaylistShow> {
 
   Future nonet(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => noInternet()));
+        context, MaterialPageRoute(builder: (context) => NoInternet()));
   }
 
   @override

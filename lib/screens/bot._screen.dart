@@ -1,18 +1,18 @@
-import 'package:corona_app/app_icon.dart';
-import 'package:corona_app/backend/fetching.dart';
-import 'package:corona_app/screens/map_screen.dart';
-import 'package:corona_app/screens/news.dart';
-import 'package:corona_app/screens/world_screen.dart';
-import 'package:connectivity/connectivity.dart';
-import 'package:corona_app/screens/youtube.dart';
-import "package:flutter/material.dart";
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'dart:io';
 import 'dart:async';
-import '../flutter_app_icons.dart';
-import 'noInternet.dart';
 import 'about_app.dart';
+import 'noInternet.dart';
+import '../flutter_app_icons.dart';
+import "package:flutter/material.dart";
+import 'package:corona_app/app_icon.dart';
+import 'package:corona_app/screens/news.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:corona_app/screens/youtube.dart';
+import 'package:corona_app/backend/fetching.dart';
+import 'package:corona_app/screens/map_screen.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:corona_app/screens/world_screen.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class Bot extends StatefulWidget {
   @override
@@ -28,7 +28,7 @@ class _BotState extends State<Bot> {
 
   Future aboutapp(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => About_app()));
+        context, MaterialPageRoute(builder: (context) => AboutApp()));
   }
 
   Future indiaMap(context) async {
@@ -46,7 +46,7 @@ class _BotState extends State<Bot> {
 
   Future nonet(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => noInternet()));
+        context, MaterialPageRoute(builder: (context) => NoInternet()));
   }
 
   StreamSubscription connectivitySubscription;

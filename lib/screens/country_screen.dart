@@ -1,17 +1,18 @@
+import 'dart:io';
+import 'news.dart';
+import 'dart:async';
+import 'about_app.dart';
+import 'noInternet.dart';
+import '../flutter_app_icons.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:corona_app/screens/youtube.dart';
 import 'package:corona_app/backend/fetching.dart';
 import 'package:corona_app/screens/world_screen.dart';
-import 'package:corona_app/screens/youtube.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'dart:io';
-import 'dart:async';
-import 'package:connectivity/connectivity.dart';
-import '../flutter_app_icons.dart';
-import 'about_app.dart';
-import 'news.dart';
-import 'noInternet.dart';
+
 
 class CountryScreen extends StatefulWidget {
   final covidData, cName;
@@ -37,7 +38,7 @@ class _CountryScreenState extends State<CountryScreen> {
 
   Future nonet(context) async {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => noInternet()));
+        context, MaterialPageRoute(builder: (context) => NoInternet()));
   }
 
   bool dialogshown = false;
@@ -90,7 +91,7 @@ class _CountryScreenState extends State<CountryScreen> {
 
     Future aboutapp1(context) async {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => About_app()));
+          context, MaterialPageRoute(builder: (context) => AboutApp()));
     }
 
     Future youtube(context) async {
