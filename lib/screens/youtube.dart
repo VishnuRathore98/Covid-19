@@ -57,7 +57,7 @@ class _PlaylistShowState extends State<PlaylistShow> {
     int _currentindex = 3;
     GlobalKey _bottomNavigationKey = GlobalKey();
     return MaterialApp(
-      title: 'Covid-19',
+      title: 'NCov-19',
       home: SafeArea(
         child: Scaffold(
             bottomNavigationBar: CurvedNavigationBar(

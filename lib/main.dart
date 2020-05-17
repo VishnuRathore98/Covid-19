@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         DeviceOrientation.portraitUp,
       ]);
     return MaterialApp(
-      title: 'Covid-19',
+      title: 'NCov-19',
       initialRoute: 'wel',
       routes: {
         'wel': (context) => _MyAppState()
@@ -41,7 +41,7 @@ class _MyAppState extends StatelessWidget {
         photoSize: 230.0,
         loaderColor: Colors.black38,
         loadingText: Text(
-            "Covid-19",
+            "NCov-19",
             style: TextStyle(
                 letterSpacing: 8,
                 fontSize: 30,

@@ -16,7 +16,7 @@ class _NoInternetState extends State<NoInternet> {
     int _currentindex = 0;
 
     return MaterialApp(
-      title: 'Covid-19',
+      title: 'NCov-19',
       home: Scaffold(
         bottomNavigationBar: CurvedNavigationBar(
           index: _currentindex,

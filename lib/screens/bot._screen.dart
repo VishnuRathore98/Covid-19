@@ -84,7 +84,7 @@ class _BotState extends State<Bot> {
     GlobalKey _bottomNavigationKey = GlobalKey();
     return SafeArea(
       child: MaterialApp(
-          title: 'Covid-19',
+          title: 'NCov-19',
           home: Scaffold(
             bottomNavigationBar: CurvedNavigationBar(
               index: _currentindex,

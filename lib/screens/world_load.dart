@@ -77,7 +77,7 @@ class _WorldLoadState extends State<WorldLoad> {
     GlobalKey _bottomNavigationKey = GlobalKey();
     int _currentindex = 0;
     return MaterialApp(
-      title: 'Covid-19',
+      title: 'NCov-19',
       home: SafeArea(
         child: Scaffold(
           floatingActionButton: Container(
@@ -152,7 +152,7 @@ class _WorldLoadState extends State<WorldLoad> {
              children: <Widget>[
                MyHeaderW(
                  image: "images/world.png",
-                 textTop: "Covid-19 Spread",
+                 textTop: "Corona Spread",
                  textBottom: "Across World",
 
                ),

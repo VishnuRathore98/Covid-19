@@ -77,9 +77,9 @@ class _AboutAppState extends State<AboutApp> {
     int _currentindex = 4;
     GlobalKey _bottomNavigationKey = GlobalKey();
     return MaterialApp(
-      title: 'About Covid-19',
+      title: 'About Corona.',
       home: MaterialApp(
-        title: 'Covid-19',
+        title: 'NCov-19',
         home: SafeArea(
           child: Scaffold(
             floatingActionButton: Container(
@@ -151,7 +151,7 @@ class _AboutAppState extends State<AboutApp> {
                   MyHeader(
                     image: "icons/coronadr.svg",
                     textTop: "Get to know",
-                    textBottom: "About Covid-19.",
+                    textBottom: "About Corona.",
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20),
@@ -415,7 +415,7 @@ class Credits extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage("images/credits.png"),
+                    image: AssetImage("images/c1.png"),
                     fit: BoxFit.contain),
               ),
             ),
